@@ -85,7 +85,7 @@ def full():
         headings = ["Filename", "File Size", "Date backed up"]
         writer.writerow(headings)
         for files in src:
-            if not files.startswith('.'):
+            if not files.startswith('.' or '~'):
                 row = [files]
                 filesize = os.stat(source + files).st_size
                 row.append(filesize)
@@ -110,7 +110,7 @@ def incremental():
         headings = ["Filename", "File Size", "Date backed up"]
         writer.writerow(headings)
         for files in src:
-            if not files.startswith('.'):
+            if not files.startswith('.' or '~$'):
                 row = [files]
                 filesize = os.stat(source + files).st_size
                 row.append(filesize)
@@ -131,8 +131,7 @@ def incremental():
         if i != file2[count]:
             changes += 1
         count += 1
-        print("Number of changes")
-        print(changes)
+    print("No changes found")
 
     # If changes are found, copy files again
     if changes != 0:
@@ -153,7 +152,7 @@ def copy_files():
         headings = ["Filename", "File Size", "Date backed up"]
         writer.writerow(headings)
         for files in src:
-            if not files.startswith('.'):
+            if not files.startswith('.' or '~$'):
                 row = [files]
                 filesize = os.stat(source + files).st_size
                 row.append(filesize)
@@ -170,7 +169,7 @@ def copy_files():
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     # First run check if source and destination are set
-    check_srcdest()
+    #check_srcdest()
 
     # Check if destination folder is empty
     # If the folder is empty, start a full backup
@@ -178,6 +177,7 @@ if __name__ == '__main__':
     if '.DS_Store' in hiddenfiles:
         hiddenfiles.remove('.DS_Store')
     if not hiddenfiles:
+        print("Destination folder empty - starting full backup")
         full()
 
     # Run a full backup on Sundays
