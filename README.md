@@ -16,7 +16,7 @@ Script does the following:
     - If any files have changed it will start an "Incremental Backup"
 
 When a full or incremental backup is run, the script will write to a log file.
-It only writes the following:
+It only writes the following:  
 [Type of backup] + [Date] + [Time]
 
 Note: Incremental backup copies all files in the source folder when changes are made, it does not only copy the files that have changed
