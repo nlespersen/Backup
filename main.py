@@ -131,11 +131,12 @@ def incremental():
         if i != file2[count]:
             changes += 1
         count += 1
-    print("No changes found")
+    print("Number of files changed:")
+    print(changes)
 
     # If changes are found, copy files again
     if changes != 0:
-        print("Number of changes")
+        print("Number of files changed:")
         print(changes)
         copy_files()
 
@@ -169,7 +170,7 @@ def copy_files():
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     # First run check if source and destination are set
-    #check_srcdest()
+    check_srcdest()
 
     # Check if destination folder is empty
     # If the folder is empty, start a full backup
